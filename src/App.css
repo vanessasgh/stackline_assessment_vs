@@ -1,38 +1,153 @@
-.App {
-  text-align: center;
+body,
+html {
+  font-family: Roboto, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  background-color: #052849;
+  padding: 2vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+  height: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bodyDiv {
+  background-color: #f6f8fa;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5vw;
+}
+
+.contentDiv {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 1px #dddddd;
+  border-radius: 8px;
+  height: 100vh;
+}
+
+.mainDiv {
+  background-color: #f6f8fa;
+  width: 100%;
+  height: 100vh;
+}
+
+
+/* item info */
+.itemInfoDiv {
+  background-color: #ffffff;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.itemImg {
+  width: 60%;
+}
+
+.itemInfoTitle {
+  margin-top: 2vh;
+  font-size: 25px;
+  text-align: center;
+  color: #2e2e2e;
+}
+
+.itemInfoDesc {
+  margin-top: 0px;
+  font-size: 15px;
+  color: #ccd5e0;
+  text-align: center;
+}
+
+.divider {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 1px;
+  background-color: #ccd5e0;
+}
+
+.contentFirstPartDiv {
+  padding-top: 2vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Tags */
+.tag {
+  border-style: solid;
+  border-color: #ccd5e0;
+  border-radius: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  border-width: 1px;
+  margin: 5px;
+}
+
+.tagText {
+  margin: 0px;
+}
+
+.tagList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+}
+
+
+/* Table */
+.tableDiv {
+  margin-left: 2vw;
+  flex: 3;
+  padding: 2vw;
+  width: 100%;
+  overflow: auto;
+}
+
+.table {
+  border-collapse: separate;
+  width: 100%;
+  border-spacing: 0 1em;
+}
+
+.tableRow {
+  color: #ccd5e0;
+}
+
+.tableCell {
+  border-bottom: 1px solid #ccd5e0;
+  padding-bottom: 1em;
+  color: #ccd5e0;
+}
+
+.tableContent {
+  text-align: center;
+}
+
+.textWithIconTH {
+  display: flex;
+  flex-direction: horizontal;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.tableTh {
+  color: #2e2e2e;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccd5e0;
+  padding-bottom: 2vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.iconTH {
+  margin-left: 5px;
 }
