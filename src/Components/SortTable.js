@@ -1,12 +1,18 @@
 import '../App.css'
-import React, { useState } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../state/index"
 
-export default function SortTable(props) {
-    const [data, setData] = useState(props.tableData)
-    const [order, setOrder] = useState("DESC")
-    const [chosenCol, setChosenCol] = useState(null)
+export default function SortTable() {
+    const data = useSelector((state) => state.data);
+    const order = useSelector((state) => state.order);
+    const chosenCol = useSelector((state) => state.chosenCol);
+
+    const dispatch = useDispatch();
+    const { sortData, switchOrder, changeChosenCol } = bindActionCreators(actionCreators, dispatch);
 
     // sorting logic for table's data
     const sorting = (col) => {
@@ -19,9 +25,9 @@ export default function SortTable(props) {
                 }
             }
             )
-            setData(sorted);
-            setOrder("DESC");
-            setChosenCol(col);
+            sortData(sorted);
+            switchOrder("ASC");
+            changeChosenCol(col);
         }
         if (order === "DESC") {
             const sorted = [...data].sort((a, b) => {
@@ -32,9 +38,9 @@ export default function SortTable(props) {
                 }
             }
             )
-            setData(sorted);
-            setOrder("ASC");
-            setChosenCol(col);
+            sortData(sorted);
+            switchOrder("DESC");
+            changeChosenCol(col);
         }
     }
 
@@ -50,9 +56,9 @@ export default function SortTable(props) {
 
 function TableRowList(props) {
     var data = props.data;
-
+    var keyValue = 1;
     var tableRows = data.map((row) => (
-        <tr className='tableRow'>
+        <tr className='tableRow' key={keyValue++}>
             <td className='tableCell'>{row.weekEnding}</td>
             <td className='tableCell'>{row.retailSales}</td>
             <td className='tableCell'>{row.wholesaleSales}</td>
@@ -66,11 +72,13 @@ function TableRowList(props) {
 function TableHeaderList(props) {
     return (
         <thead>
-            <TextWithIconHeader header={"WEEK ENDING"} columnNameFromData={"weekEnding"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
-            <TextWithIconHeader header={"RETAIL SALES"} columnNameFromData={"retailSales"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
-            <TextWithIconHeader header={"WHOLESALE SALES"} columnNameFromData={"wholesaleSales"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
-            <TextWithIconHeader header={"UNITS SOLD"} columnNameFromData={"unitsSold"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
-            <TextWithIconHeader header={"RETAILER MARGIN"} columnNameFromData={"retailerMargin"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
+            <tr>
+                <TextWithIconHeader header={"WEEK ENDING"} columnNameFromData={"weekEnding"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
+                <TextWithIconHeader header={"RETAIL SALES"} columnNameFromData={"retailSales"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
+                <TextWithIconHeader header={"WHOLESALE SALES"} columnNameFromData={"wholesaleSales"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
+                <TextWithIconHeader header={"UNITS SOLD"} columnNameFromData={"unitsSold"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
+                <TextWithIconHeader header={"RETAILER MARGIN"} columnNameFromData={"retailerMargin"} order={props.order} sorting={props.sorting} chosenCol={props.chosenCol} />
+            </tr>
         </thead>
     );
 }
